@@ -1,46 +1,17 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/basemsg?characterEncoding=UTF-8&serverTimezone=UTC
-#    username: root
-#    password: runge@2018
-    username: root
-    password: 123456
-
-#    url: jdbc:mysql://rm-bp1n9596bu5250p3g.mysql.rds.aliyuncs.com:3306/basemsg?characterEncoding=UTF-8
-#    username: lottery_pay
-#    password: lottery_pay@2017
-    type: com.alibaba.druid.pool.DruidDataSource
-  application:
-    name: ks-base
-#  redis:
-#    host: 127.0.0.1
-#    port: 6379
-#    password: admin
-#  rabbitmq:
-#    host: 127.0.0.1
-#    port: 5672
-#    username: guest
-#    password: guest
-#    publisher-confirms: true
-#  jpa:
-#    properties:
-#      hibernate:
-#        enable_lazy_load_no_trans: true
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:2000/eureka/
+  profiles:
+    active: dev
 server:
   port: 2002
-logging:
-  file: /root/baselogs/msg.log
-
-
 tencent:
   msg:
     appid: 1400237690
     appkey: "8757056432f4b2a4870a938468a07521"
     smsSign: "看啥网"
-    templateId: 386486
+    templateId: 387563
     time: 30
+mail:
+  myEmail:
+  myEmailPassword:
+  myEmailSMTPHost:
+  receiveMail:

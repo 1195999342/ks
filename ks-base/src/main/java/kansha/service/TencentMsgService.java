@@ -16,7 +16,7 @@ import java.io.IOException;
  * @create: 2019-08-01 16:59
  **/
 @Component
-public class TencentMsgUtilsService {
+public class TencentMsgService {
     @Value("${tencent.msg.appid}")
     private  int appid;
 
@@ -38,12 +38,12 @@ public class TencentMsgUtilsService {
      * @param msg
      * @return
      */
-    public  SmsSingleSenderResult sendMsg(String msg,String tel){
+    public  SmsSingleSenderResult sendCode(String msg,String tel){
         SmsSingleSenderResult result = null;
         try {
             SmsSingleSender ssender = new SmsSingleSender(appid, appkey);
             result = ssender.send(0, "86", tel,
-                    "【腾讯云】您的验证码是: 5678", "", "");
+                    msg, "", "");
             System.out.println(result);
         } catch (HTTPException e) {
             // HTTP 响应码错误

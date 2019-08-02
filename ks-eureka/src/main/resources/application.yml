@@ -1,15 +1,5 @@
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:2000/eureka/
-    register-with-eureka: false #是否注册本机
-    fetch-registry: false
-  server:
-    peer-node-read-timeout-ms: 3000
-#  server:
-#    enable-self-preservation: false #心跳自我保护模式开关(生产环境不要关闭)
 spring:
-  applicantion:
-    name: ks-eureka
+  profiles:
+    active: dev
 server:
   port: 2000

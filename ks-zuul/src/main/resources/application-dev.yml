@@ -1,0 +1,25 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:2000/eureka/
+#  instance:
+#    appname: zuul
+
+#  port: 1121
+zuul:
+  routes:
+    base:
+      path: /base/**
+      serviceId: ks-base  # 转发到消费者 /ribbon/
+#    feign:
+#      path: /feign/**
+#      serviceId: ks-base  # 转发到消费者 /feign/
+
+#ribbon:
+#  eureka:
+#    enabled: true
+spring:
+  application:
+    name: ks-zuul
+logging:
+  file: /data/lottery_pay/runge-base/zuul/log/zuul.log
