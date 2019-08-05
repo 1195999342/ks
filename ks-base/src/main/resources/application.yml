@@ -11,7 +11,7 @@ tencent:
     templateId: 387563
     time: 30
 mail:
-  myEmail:
-  myEmailPassword:
-  myEmailSMTPHost:
-  receiveMail:
+  myEmail: kansha@kansha.net.cn
+  myEmailPassword: pzy78216795
+  myEmailSMTPHost: smtp.ym.163.com #网易企业免费邮箱
+  mySmtpPort: 25

@@ -5,9 +5,9 @@ eureka:
     register-with-eureka: false #是否注册本机
     fetch-registry: false
   server:
-    peer-node-read-timeout-ms: 3000
+    #peer-node-read-timeout-ms: 3000
     enable-self-preservation: false #心跳自我保护模式开关(生产环境不要关闭)
-    eviction-interval-timer-in-ms: 5000
+    #eviction-interval-timer-in-ms: 5000
 spring:
   applicantion:
     name: ks-eureka

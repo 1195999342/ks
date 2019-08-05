@@ -10,6 +10,7 @@ import kansha.utils.RandomNumberUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,11 +44,13 @@ public class MsgController {
      * @param tel
      * @return
      */
-    @RequestMapping("sendTelCheckCode")
-    public ResultEntity sendTelCheckCode(@RequestParam String tel ){
+    @RequestMapping("sendTelCheckCode/{tel}")
+    public ResultEntity sendTelCheckCode(@PathVariable("tel") String tel ){
         log.info("【url:/sendTelCheckCode】 【tel:"+tel+"】");
-        String code = RandomNumberUtil.getRandomNumber6();
         ResultEntity result = new ResultEntity();
+        result.setPath("/sendTelCheckCode/"+tel);
+        result.setServiceName("/base");
+        String code = RandomNumberUtil.getRandomNumber6();
         if(StringUtils.isEmpty(tel) || StringUtils.isEmpty(code) || !tel.matches(PHONE_NUMBER_REG)|| !code.matches(CHECK_CODE)) {
             result.setCode(CommonEmun.PARAMS_ERROR.getCode());
             result.setDescription(CommonEmun.PARAMS_ERROR.getDesc());
@@ -68,11 +71,13 @@ public class MsgController {
         result.setData(smsSingleSenderResult);
         return result;
     }
-    @RequestMapping("sendMailCheckCode")
-    public ResultEntity sendMailCheckCode(@RequestParam String emailAdress ){
+    @RequestMapping(value = {"sendMailCheckCode/{emailAdress}"})
+    public ResultEntity sendMailCheckCode(@PathVariable("emailAdress") String emailAdress ){
         log.info("【url:/sendMailCheckCode】 【emailAdress:"+emailAdress+"】");
-        String code = RandomNumberUtil.getRandomNumber6();
         ResultEntity result = new ResultEntity();
+        result.setPath("/sendMailCheckCode/"+emailAdress);
+        result.setServiceName("/base");
+        String code = RandomNumberUtil.getRandomNumber6();
         if(StringUtils.isEmpty(emailAdress) || StringUtils.isEmpty(code) || !emailAdress.matches(RULE_EMAIL)|| !code.matches(CHECK_CODE)) {
             result.setCode(CommonEmun.PARAMS_ERROR.getCode());
             result.setDescription(CommonEmun.PARAMS_ERROR.getDesc());
@@ -81,7 +86,7 @@ public class MsgController {
         result.setCode(CommonEmun.SUCCESS.getCode());
         result.setDescription(CommonEmun.SUCCESS.getDesc());
         try {
-            emailService.sendCode(emailAdress, code);
+            emailService.sendCode(code, emailAdress);
         } catch (Exception e) {
             result.setCode(CommonEmun.SEAND_CODE_ERROR.getCode());
             result.setDescription(CommonEmun.SEAND_CODE_ERROR.getDesc());
